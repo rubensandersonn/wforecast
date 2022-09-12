@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WForecast.Models.PrevisaoClima>
+@using WForecast.Data.Structs;
+
+<div class="panel panel-default">
+    <div class="panel-heading">Cidades Mais Quentes Hoje</div>
+    <div class="panel-body">
+
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                string icon = item.Clima == Climas.Nublado.ToString()
+                    ? "<span class='glyphicon glyphicon-cloud'></span>"
+                    : item.Clima == Climas.Vento.ToString()
+                        ? "<span class='glyphicon glyphicon-leaf'></span>"
+                        : item.Clima == Climas.Umido.ToString()
+                            ? "<span class='glyphicon glyphicon-tint'></span>"
+                            : item.Clima == Climas.Sol.ToString()
+                                ? "<span class='glyphicon glyphicon-certificate'></span>"
+                                : item.Clima == Climas.Tempestuoso.ToString()
+                                    ? "<span class='glyphicon glyphicon-flash'></span>"
+                                    : "<span class='glyphicon glyphicon-tree-deciduous'></span>";
+                <div class="row" style="padding: 1rem; border-bottom: 1px solid #dadada">
+                    <div class="col-sm-5">
+                        @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.Raw(icon) @Html.DisplayFor(modelItem => item.Clima)
+                    </div>
+                    <div class="col-sm-2">
+                        Min. @Html.DisplayFor(modelItem => item.TemperaturaMinima)°
+                    </div>
+                    <div class="col-sm-2">
+                        Max. @Html.DisplayFor(modelItem => item.TemperaturaMaxima)°
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

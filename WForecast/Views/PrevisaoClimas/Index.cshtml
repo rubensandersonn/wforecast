@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WForecast.Models.Cidade>
+
+@{
+    ViewBag.Title = "O CLIMA HOJE";
+}
+
+<div class="container-fluid" style="margin:10px 0 5px 0">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: #3287c1; color: white"><h4><b>O Clima Agora</b></h4></div>
+        <div class="panel-body">
+            <div class="row" style="margin:5px 0 5px 0;">
+                <div class="col-md-6 col-sm-12">
+                    @Html.Action("CidadesMaisQuentes")
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    @Html.Action("CidadesMaisFrias")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: #3287c1; color: white"><h4><b>O Clima nos Próximos Dias</b></h4></div>
+        <div class="panel-body">
+            <div>
+                @Html.DropDownList(
+                    "CidadeId", 
+                    Model.Select(b => new SelectListItem() { Value = b.Id.ToString(), Text = b.Nome }), 
+                    "Selecione uma cidade...",
+                    new { @class = "form-control" }
+                )
+            </div>
+            <div id="previsao-proximos-dias-container" class="row" style="margin:5px 0 5px 0;">
+                @Html.Action("PrevisaoProximosDias")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("#CidadeId").change(function (e) {
+                var cidadeId = $(this).val();
+                $("#previsao-proximos-dias-container").load("/PrevisaoClimas/PrevisaoProximosDias?Id=" + cidadeId);
+            });
+        });
+    </script>
+}

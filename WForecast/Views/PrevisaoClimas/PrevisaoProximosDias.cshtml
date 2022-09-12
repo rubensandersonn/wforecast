@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WForecast.Models.PrevisaoClima>
+@using System.Globalization;
+@using WForecast.Data.Structs;
+
+
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="grid-container">
+        @foreach (var item in Model)
+        {
+            CultureInfo idioma = new CultureInfo("pt-BR");
+            string diaDaSemana = item.Data.ToString("dddd", idioma);
+
+            string icon = item.Clima == Climas.Nublado.ToString()
+                ? "<span class='glyphicon glyphicon-cloud'></span>"
+                : item.Clima == Climas.Vento.ToString()
+                    ? "<span class='glyphicon glyphicon-leaf'></span>"
+                    : item.Clima == Climas.Umido.ToString()
+                        ? "<span class='glyphicon glyphicon-tint'></span>"
+                        : item.Clima == Climas.Sol.ToString()
+                            ? "<span class='glyphicon glyphicon-certificate'></span>"
+                            : item.Clima == Climas.Tempestuoso.ToString()
+                                ? "<span class='glyphicon glyphicon-flash'></span>"
+                                : "<span class='glyphicon glyphicon-tree-deciduous'></span>";
+        <div class="grid-container-item panel panel-default">
+            <div class="panel-heading" style="background-color: #3287c1; color: white">@diaDaSemana</div>
+            <div class="panel-body">
+                
+                <p>@Html.Raw(icon) @Html.DisplayFor(modelItem => item.Clima)</p>
+                <p>Mínima: @Html.DisplayFor(modelItem => item.TemperaturaMaxima)°</p>
+                <p>Máxima: @Html.DisplayFor(modelItem => item.TemperaturaMinima)°</p>
+            </div>
+        </div>
+        }
+    </div>
+}
