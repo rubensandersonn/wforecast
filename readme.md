@@ -24,7 +24,9 @@ Além disso, na página _Sobre_, são apresentados meus dados para esta seleçã
 Para executar o projeto, é necessário ter instalado:
 
 > .NET Framework 4.6.1
+>
 > Sql Server
+>
 > Git (para clonar o projeto)
 
 O ambiente de desenvolvimento foi o Visual Studio 2019 diretamente no IIS, porém o projeto tem suporte a docker que não foi utilizado nos testes.
@@ -42,3 +44,5 @@ Para executar o projeto no localhost e testá-lo:
 6. Execute a aplicação clicando no botão IIS Express.
 
 No navegador, o projeto estará em https://localhost:44334/
+
+OBS: com o projeto executando, acesse a rota https://localhost:44334/PrevisaoClimas/CriarDadosPrevisao

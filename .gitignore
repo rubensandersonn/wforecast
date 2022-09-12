@@ -22,7 +22,9 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/
+!bin/
+bin/*
+!bin/roslyn
 obj/
 TestResults/
 ###################
