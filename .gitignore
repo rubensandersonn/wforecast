@@ -22,8 +22,9 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/*
-!/bin/roslyn/*
+/WForecast/bin/*
+!/WForecast/bin/roslyn/  
+!/WForecast/bin/roslyn/*
 obj/
 TestResults/
 ###################
